@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js example</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+    canvas {
+      border: 5px solid black;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    p {
+      font-size: 15px;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+  <h1>
+    MS Paint 2
+  <h1>
+  <p>
+      <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
+      <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
+      <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
+      <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input>
+      <!-- <label for="colorHex">Input hex value:</label>
+      <input type="text", name="colorHex", id="colorHex"></input> -->
+      <input type="button", value="Clear", onclick="clearCanvas()", id="clear"></input>
+      <p id="currentcolor"> Current Color: Black </p>
+      <!-- <p id="stroke">
+        <p>
+        Stroke:
+        </p>
+        <input type="range", min="1", max="10", value="3", class="slider", id="strokeSlider"></input>
+      </p> -->
+  </p>
+</body>
+
+</html>
