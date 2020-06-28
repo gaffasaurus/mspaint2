@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/864f3db3c1.js" crossorigin="anonymous"></script>
   <title>MS Paint 2</title>
   <style>
     body {
@@ -15,6 +16,13 @@
     .drawing {
       display: flex;
       flex-direction: row;
+    }
+
+    .settingsHeader {
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+      margin-right: 10px;
     }
 
     .settings {
@@ -48,24 +56,31 @@
     MS Paint 2
   <h1>
     <div class="drawing">
-      <div class="settings" id="tools">
-        <p>
-          <!-- <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
-          <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
-          <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
-          <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input> -->
-          <label for="pickColor"; style="font-size: 15px">Brush color:</label>
-          <br></br>
-          <input type="color", value="#000000", id="pickColor"></input>
-          <!-- <p id="currentcolor"> Current Color: #000000 </p> -->
+      <div class="settingsHeader">
+        <h2 style="font-size: 20px; text-align: center; margin-bottom: -10px">Tools:</h2>
+        <div class="settings" id="tools">
           <p>
-            <label for="strokeSlider"; style= "font-size: 15px"; id="strokeLabel">Stroke size: 3</label>
-            <br>
-            <input type="range", min="1", max="10", value="3", oninput="sliderMoved()", class="slider", id="strokeSlider"></input>
+            <!-- <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
+            <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
+            <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
+            <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input> -->
+            <label for="pickColor"; style="font-size: 15px">Color:</label>
+            <br></br>
+            <input type="color", value="#000000", id="pickColor"></input>
+            <!-- <p id="currentcolor"> Current Color: #000000 </p> -->
+            <div class="brushMode">
+              <button id="brush"><i class="fas fa-paint-brush"></i></button>
+              <button id="eraser"><i class="fas fa-eraser"></i></button>
+            </div>
+            <p>
+              <label for="strokeSlider"; style= "font-size: 15px"; id="strokeLabel">Stroke size: 3</label>
+              <br>
+              <input type="range", min="1", max="10", value="3", oninput="sliderMoved()", class="slider", id="strokeSlider"></input>
+            </p>
+            <p><input type="button", value="Undo", onclick="undo()", id="undo"></input></p>
+            <p><input type="button", value="Clear Canvas", onclick="clearCanvas()", id="clear"></input></p>
           </p>
-          <p><input type="button", value="Undo", onclick="undo()", id="undo"></input></p>
-          <p><input type="button", value="Clear Canvas", onclick="clearCanvas()", id="clear"></input></p>
-        </p>
+        </div>
       </div>
       <div id="canvas">
       </div>

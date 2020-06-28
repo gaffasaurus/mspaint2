@@ -115,5 +115,7 @@ function mousePressed() {
 }
 
 function clearCanvas() {
+  drawn = []
+  currentLine = []
   clear();
 }
