@@ -7,47 +7,68 @@
   <title>MS Paint 2</title>
   <style>
     body {
-      padding: 0;
-      margin: 0;
+      padding: 20;
+      margin: 30;
       align-items: center;
     }
+
+    .drawing {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .settings {
+      border: 3px solid black;
+      align-items: center;
+      padding: 10px;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
     h1 {
       font-size: 24px;
       text-align: center;
     }
+
     canvas {
       border: 5px solid black;
-      display: block;
+      /* display: block;
       margin-left: auto;
       margin-right: auto;
+      align-items: center; */
     }
+
     p {
       font-size: 15px;
     }
+
   </style>
-  <script src="p5.js"></script>
-  <script src="sketch.js"></script>
 </head>
 <body>
   <h1>
     MS Paint 2
   <h1>
-  <p>
-      <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
-      <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
-      <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
-      <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input>
-      <!-- <label for="colorHex">Input hex value:</label>
-      <input type="text", name="colorHex", id="colorHex"></input> -->
-      <input type="button", value="Clear", onclick="clearCanvas()", id="clear"></input>
-      <p id="currentcolor"> Current Color: Black </p>
-      <!-- <p id="stroke">
+    <div class="drawing">
+      <div class="settings" id="tools">
         <p>
-        Stroke:
+          <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
+          <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
+          <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
+          <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input>
+          <!-- <label for="colorHex">Input hex value:</label>
+          <input type="text", name="colorHex", id="colorHex"></input> -->
+          <input type="button", value="Clear", onclick="clearCanvas()", id="clear"></input>
+          <p id="currentcolor"> Current Color: Black </p>
+          <label for="strokeSlider"; style= "font-size: 15px"; id="strokeLabel">Stroke size: 3</label>
+          <input type="range", min="1", max="10", value="3", oninput="sliderMoved()", class="slider", id="strokeSlider"></input>
         </p>
-        <input type="range", min="1", max="10", value="3", class="slider", id="strokeSlider"></input>
-      </p> -->
-  </p>
-</body>
+      </div>
+      <div id="canvas">
 
+      </div>
+    </div>
+</body>
+<script src="p5.js"></script>
+<script src="sketch.js"></script>
 </html>

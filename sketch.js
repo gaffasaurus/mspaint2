@@ -1,5 +1,6 @@
 function setup() {
-  createCanvas(500, 450);
+  var myCanvas = createCanvas(750, 500);
+  myCanvas.parent("canvas")
 }
 
 function draw() {
@@ -46,11 +47,18 @@ function currentColor() {
     return document.getElementById("currentcolor").innerHTML
 }
 
+var slider = document.getElementById("strokeSlider");
+var label = document.getElementById("strokeLabel")
+
+function sliderMoved() {
+  label.innerHTML = "Stroke size: " + slider.value
+}
+
 function mouseDragged() {
   // fill(r, g, b);
   // ellipse(mouseX, mouseY, 6, 6);
   stroke(r, g, b); // Change the color
-  strokeWeight(5); // Make the points 10 pixels in size
+  strokeWeight(slider.value); // Make the points 10 pixels in size
   line(mouseX - 5, mouseY - 5, pmouseX - 5, pmouseY - 5)
 }
 
