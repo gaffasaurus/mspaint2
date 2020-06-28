@@ -1,12 +1,15 @@
+let w = 750;
+let h = 500;
+
 function setup() {
-  var myCanvas = createCanvas(750, 500);
+  var myCanvas = createCanvas(w, h);
   myCanvas.parent("canvas")
 }
 
 function draw() {
   // fill(0, 0, 0);
   // ellipse(window.innerWidth/2, window.innerHeight/2, 50, 50);
-  noStroke()
+  noStroke();
 }
 
 let r = 0;
@@ -54,18 +57,60 @@ function sliderMoved() {
   label.innerHTML = "Stroke size: " + slider.value
 }
 
+var drawn = [];
+var currentLine = [];
+
+function pushCurrentLine() {
+  currentLine.push({
+    x: mouseX - 5,
+    y: mouseY - 5,
+    px: pmouseX - 5,
+    py: pmouseY -5,
+    stroke: slider.value * 2,
+    color: [r, g, b]
+  });
+}
 function mouseDragged() {
-  // fill(r, g, b);
-  // ellipse(mouseX, mouseY, 6, 6);
-  stroke(r, g, b); // Change the color
-  strokeWeight(slider.value); // Make the points 10 pixels in size
-  line(mouseX - 5, mouseY - 5, pmouseX - 5, pmouseY - 5)
+  if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
+    stroke(r, g, b); // Change the color
+    strokeWeight(slider.value * 2); // Make the points 10 pixels in size
+    line(mouseX - 5, mouseY - 5, pmouseX - 5, pmouseY - 5);
+    pushCurrentLine();
+  } else {
+    return;
+  }
 }
 
-function mouseClicked() {
-  stroke(r, g, b);
-  strokeWeight(5);
-  point(mouseX - 5, mouseY - 5)
+function mouseReleased() {
+  if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
+    drawn.push(currentLine);
+    currentLine = [];
+  } else {
+    return;
+  }
+}
+
+function undo() {
+  background(255, 255, 255);
+  drawn.pop();
+  for (i = 0; i < drawn.length; i++) {
+    for (j = 0; j < drawn[i].length; j++) {
+      var lineData = drawn[i][j];
+      stroke(lineData['color'][0], lineData['color'][1], lineData['color'][2]);
+      strokeWeight(lineData['stroke']);
+      line(lineData['x'], lineData['y'], lineData['px'], lineData['py']);
+    }
+  }
+}
+
+
+function mousePressed() {
+  if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
+    stroke(r, g, b);
+    strokeWeight(slider.value * 2);
+    line(mouseX - 5, mouseY - 5, mouseX - 5, mouseY - 5);
+    pushCurrentLine();
+  }
 }
 
 function clearCanvas() {
