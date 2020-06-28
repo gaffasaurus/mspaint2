@@ -71,6 +71,9 @@ function pushCurrentLine() {
     color: currentColor
   });
 }
+
+var brushMode = "brush";
+
 function mouseDragged() {
   if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
     stroke(currentColor); // Change the color
@@ -88,6 +91,30 @@ function mouseReleased() {
     currentLine = [];
   } else {
     return;
+  }
+}
+
+function resetButtonBackgrounds(buttons) {
+  for (i = 0; i < buttons.length; i++) {
+    buttons[i].style.backgroundColor = "transparent"
+  }
+}
+function setBrushMode(mode) {
+  brushMode = mode;
+  var clicked = document.getElementById(mode);
+  var others = [];
+  var brushButtons = document.getElementById("brushMode").children;
+  for (i = 0; i < brushButtons.length; i++) {
+    if (brushButtons[i] != clicked) {
+      others.push(brushButtons[i])
+    }
+  }
+  resetButtonBackgrounds(others);
+  clicked.style.backgroundColor = "#00FFFF";
+  if (mode == "eraser") {
+    erase();
+  } else if (mode == "brush") {
+    noErase();
   }
 }
 
