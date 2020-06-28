@@ -1,4 +1,4 @@
-let w = 750;
+let w = 850;
 let h = 500;
 
 function setup() {
@@ -12,33 +12,31 @@ function draw() {
   noStroke();
 }
 
-let r = 0;
-let g = 0;
-let b = 0;
 
-function changeColor(color) {
-  if (color == "black") {
-    r = 0;
-    g = 0;
-    b = 0;
-    document.getElementById("currentcolor").innerHTML = "Current Color: Black";
-  } else if (color == "red") {
-    r = 255;
-    g = 0;
-    b = 0;
-    document.getElementById("currentcolor").innerHTML = "Current Color: Red";
-  } else if (color == "green") {
-    r = 0;
-    g = 255;
-    b = 0
-    document.getElementById("currentcolor").innerHTML = "Current Color: Green";
-  } else if (color == "blue") {
-    r = 0;
-    g = 0;
-    b = 255;
-    document.getElementById("currentcolor").innerHTML = "Current Color: Blue";
-  }
-}
+// function changeColor(color) {
+//
+  // if (color == "black") {
+  //   r = 0;
+  //   g = 0;
+  //   b = 0;
+  //   document.getElementById("currentcolor").innerHTML = "Current Color: Black";
+  // } else if (color == "red") {
+  //   r = 255;
+  //   g = 0;
+  //   b = 0;
+  //   document.getElementById("currentcolor").innerHTML = "Current Color: Red";
+  // } else if (color == "green") {
+  //   r = 0;
+  //   g = 255;
+  //   b = 0
+  //   document.getElementById("currentcolor").innerHTML = "Current Color: Green";
+  // } else if (color == "blue") {
+  //   r = 0;
+  //   g = 0;
+  //   b = 255;
+  //   document.getElementById("currentcolor").innerHTML = "Current Color: Blue";
+  // }
+// }
 //
 // var slider = document.getElementById("strokeSlider");
 // slider.oninput = changeStroke(slider.value);
@@ -46,9 +44,12 @@ function changeColor(color) {
 //   this.stroke = stroke;
 // }
 
-function currentColor() {
-    return document.getElementById("currentcolor").innerHTML
-}
+var colorPicker = document.getElementById("pickColor");
+var currentColor = colorPicker.value;
+colorPicker.addEventListener("input", function() {
+  currentColor = colorPicker.value;
+  document.getElementById("currentcolor").innerHTML = "Current Color: " + currentColor;
+})
 
 var slider = document.getElementById("strokeSlider");
 var label = document.getElementById("strokeLabel")
@@ -67,12 +68,12 @@ function pushCurrentLine() {
     px: pmouseX - 5,
     py: pmouseY -5,
     stroke: slider.value * 2,
-    color: [r, g, b]
+    color: currentColor
   });
 }
 function mouseDragged() {
   if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
-    stroke(r, g, b); // Change the color
+    stroke(currentColor); // Change the color
     strokeWeight(slider.value * 2); // Make the points 10 pixels in size
     line(mouseX - 5, mouseY - 5, pmouseX - 5, pmouseY - 5);
     pushCurrentLine();
@@ -96,7 +97,7 @@ function undo() {
   for (i = 0; i < drawn.length; i++) {
     for (j = 0; j < drawn[i].length; j++) {
       var lineData = drawn[i][j];
-      stroke(lineData['color'][0], lineData['color'][1], lineData['color'][2]);
+      stroke(lineData['color']);
       strokeWeight(lineData['stroke']);
       line(lineData['x'], lineData['y'], lineData['px'], lineData['py']);
     }
@@ -106,7 +107,7 @@ function undo() {
 
 function mousePressed() {
   if (mouseX > 0 && mouseY > 0 && mouseX < w && mouseY < h) {
-    stroke(r, g, b);
+    stroke(currentColor);
     strokeWeight(slider.value * 2);
     line(mouseX - 5, mouseY - 5, mouseX - 5, mouseY - 5);
     pushCurrentLine();

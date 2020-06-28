@@ -20,7 +20,7 @@
     .settings {
       border: 3px solid black;
       align-items: center;
-      padding: 10px;
+      padding: 20px;
       margin: 20px;
       display: flex;
       flex-direction: column;
@@ -34,6 +34,7 @@
     canvas {
       border: 5px solid black;
       touch-action: none;
+      align-self: center;
     }
 
     p {
@@ -49,17 +50,21 @@
     <div class="drawing">
       <div class="settings" id="tools">
         <p>
-          <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
+          <!-- <input type="button", value="Black", onclick="changeColor('black')", id="black"></input>
           <input type="button", value="Red", onclick="changeColor('red')", id="red"></input>
           <input type="button", value="Green", onclick="changeColor('green')", id="green"></input>
-          <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input>
-          <!-- <label for="colorHex">Input hex value:</label>
-          <input type="text", name="colorHex", id="colorHex"></input> -->
-          <input type="button", value="Clear", onclick="clearCanvas()", id="clear"></input>
-          <p id="currentcolor"> Current Color: Black </p>
-          <label for="strokeSlider"; style= "font-size: 15px"; id="strokeLabel">Stroke size: 3</label>
-          <input type="range", min="1", max="10", value="3", oninput="sliderMoved()", class="slider", id="strokeSlider"></input>
+          <input type="button", value="Blue", onclick="changeColor('blue')", id="blue"></input> -->
+          <label for="pickColor"; style="font-size: 15px">Brush color:</label>
+          <br></br>
+          <input type="color", value="#000000", id="pickColor"></input>
+          <!-- <p id="currentcolor"> Current Color: #000000 </p> -->
+          <p>
+            <label for="strokeSlider"; style= "font-size: 15px"; id="strokeLabel">Stroke size: 3</label>
+            <br>
+            <input type="range", min="1", max="10", value="3", oninput="sliderMoved()", class="slider", id="strokeSlider"></input>
+          </p>
           <p><input type="button", value="Undo", onclick="undo()", id="undo"></input></p>
+          <p><input type="button", value="Clear Canvas", onclick="clearCanvas()", id="clear"></input></p>
         </p>
       </div>
       <div id="canvas">
